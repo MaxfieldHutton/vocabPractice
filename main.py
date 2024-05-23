@@ -6,9 +6,17 @@ import time
 def clearCLI():
     print("\033c")
 
+dataSelect = input("1: vocab data | 2: test data")
+if dataSelect == "1":
+    data = "vocabDefinitions.json"
+elif dataSelect == "2":
+    data = "testData.json"
+else:
+    print("invalid... defaulting to vocab")
+    data = "vocabDefinitions.json"
 
 # Load JSON data from a file
-with open('vocabDefinitions.json', 'r') as file:
+with open(data, 'r') as file:
     loaded_data = json.load(file)
 
 
@@ -39,7 +47,7 @@ def choose_word(word_list):
 def __main__():
     clearCLI()
     print("Choose how many random words to practice")
-    print("1-46")
+    print("1-110")
     getWordAmount = int(input())
     clearCLI()
     roundNum = 0
