@@ -1,6 +1,8 @@
+import os
 import random
 import json
 import time
+
 
 def getInt(_inputText):
     while True:
@@ -11,19 +13,22 @@ def getInt(_inputText):
         except ValueError:
             print("Please enter a valid integer.")
     return wordAmount
+
+
 def clearCLI():
-    print("\033c")
+    ##print("\033c")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 dataSelect = getInt("1: vocab data | 2: test data \n")
 
 if dataSelect == "1":
-    data = "vocabDefinitions.json"
+    data = "WordLists/vocabDefinitions.json"
 elif dataSelect == "2":
-    data = "testData.json"
+    data = "WordLists/testData.json"
 else:
     print("invalid... defaulting to vocab")
-    data = "vocabDefinitions.json"
+    data = "WordLists/vocabDefinitions.json"
 
 # Load JSON data from a file
 with open(data, 'r') as file:
@@ -40,7 +45,6 @@ keys = list(loaded_data.keys())
 
 
 def choose_word(remove):
-
     chosen_word = random.choice(keys)
     if remove:
         keys.remove(chosen_word)
