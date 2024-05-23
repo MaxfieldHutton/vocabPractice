@@ -41,17 +41,17 @@ def choose_word(remove):
 def __main__():
     clearCLI()
     print("Choose how many random words to practice from 1-110 \n")
-    getWordAmount = int(input())
-    if getWordAmount >= 110:
-        getWordAmount = 110
-    if getWordAmount <= 1:
-        getWordAmount = 1
+    wordAmount = int(input())
+    if wordAmount >= 110:
+        wordAmount = 110
+    if wordAmount <= 1:
+        wordAmount = 1
 
     clearCLI()
     roundNum = 0
     correctQuestions = 0
 
-    for i in range(getWordAmount):
+    for i in range(wordAmount):
         roundActive = True
         while roundActive:
             if correctQuestions > 0:
