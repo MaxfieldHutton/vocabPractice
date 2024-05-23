@@ -2,12 +2,21 @@ import random
 import json
 import time
 
-
+def getInt(_inputText):
+    while True:
+        user_input = input(f"{_inputText}")
+        try:
+            wordAmount = int(user_input)
+            break
+        except ValueError:
+            print("Please enter a valid integer.")
+    return wordAmount
 def clearCLI():
     print("\033c")
 
 
-dataSelect = input("1: vocab data | 2: test data \n")
+dataSelect = getInt("1: vocab data | 2: test data \n")
+
 if dataSelect == "1":
     data = "vocabDefinitions.json"
 elif dataSelect == "2":
@@ -40,8 +49,7 @@ def choose_word(remove):
 
 def __main__():
     clearCLI()
-    print("Choose how many random words to practice from 1-110 \n")
-    wordAmount = int(input())
+    wordAmount = getInt("Choose how many random words to practice from 1-110 \n")
     if wordAmount >= 110:
         wordAmount = 110
     if wordAmount <= 1:
