@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../lootTableNameGeneratorScript/.idea/lootTableNameGeneratorScript.iml" filepath="$PROJECT_DIR$/../lootTableNameGeneratorScript/.idea/lootTableNameGeneratorScript.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vocabPractice.iml" filepath="$PROJECT_DIR$/.idea/vocabPractice.iml" />
     </modules>
   </component>
