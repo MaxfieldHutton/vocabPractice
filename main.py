@@ -8,11 +8,11 @@ def getInt(_inputText):
     while True:
         user_input = input(f"{_inputText}")
         try:
-            wordAmount = int(user_input)
+            user_input = int(user_input)
             break
         except ValueError:
             print("Please enter a valid integer.")
-    return wordAmount
+    return user_input
 
 
 def clearCLI():
@@ -27,9 +27,9 @@ def clamp(value, min_value, max_value):
 
 dataSelect = getInt("1: vocab data | 2: test data \n")
 
-if dataSelect == "1":
+if dataSelect == 1:
     data = "WordLists/vocabDefinitions.json"
-elif dataSelect == "2":
+elif dataSelect == 2:
     data = "WordLists/testData.json"
 else:
     print("invalid... defaulting to vocab")
@@ -81,9 +81,11 @@ def __main__():
             jsonDefinition = json.dumps(definition, indent=0)
             print(jsonDefinition)
 
-            choices = []
-            choices.append(word)
-            for i in range(3):
+            choices = [word]
+            for j in range(3):
+                wordAttempt = choose_word(False)
+                while wordAttempt in choices:
+                    wordAttempt = choose_word(False)
                 choices.append(choose_word(False))
             random.shuffle(choices)
             print(f"{choices}")
