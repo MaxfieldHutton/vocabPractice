@@ -6,6 +6,7 @@ import time
 def clearCLI():
     print("\033c")
 
+
 dataSelect = input("1: vocab data | 2: test data")
 if dataSelect == "1":
     data = "vocabDefinitions.json"
@@ -26,21 +27,13 @@ def get_value_from_json(word_list, key):
     return value
 
 
-def choose_word(word_list):
-    keys = list(word_list.keys())
+keys = list(loaded_data.keys())
 
-    chosen_word_attempt = random.choice(keys)
-    chosen_word_list = []
-    if len(chosen_word_list) != 0:
-        for i in range(len(chosen_word_list)):
-            if chosen_word_attempt != chosen_word_list[i]:
-                chosen_word = chosen_word_attempt
-                chosen_word_list.append(chosen_word_attempt)
 
-    else:
-        chosen_word = chosen_word_attempt
-        chosen_word_list.append(chosen_word_attempt)
+def choose_word():
 
+    chosen_word = random.choice(keys)
+    keys.remove(chosen_word)
     return chosen_word
 
 
@@ -57,14 +50,14 @@ def __main__():
         roundActive = True
         while roundActive:
             if correctQuestions > 0:
-                accuracy = f"accuracy: {round((correctQuestions/roundNum)*100)}%"
+                accuracy = f"accuracy: {round((correctQuestions / roundNum) * 100)}%"
             else:
                 accuracy = f" "
 
-            word = choose_word(loaded_data)
+            word = choose_word()
             definition = get_value_from_json(loaded_data, word)
             clearCLI()
-            print(f"round: {str(roundNum+1)} {accuracy}")
+            print(f"round: {str(roundNum + 1)} {accuracy}")
             print(f"What word does this describe?")
             print(json.dumps(definition, indent=0))
 
@@ -83,6 +76,7 @@ def __main__():
                 clearCLI()
                 roundActive = False
     print(f"Game Over {accuracy}")
+
 
 __main__()
 
