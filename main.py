@@ -7,7 +7,7 @@ def clearCLI():
     print("\033c")
 
 
-dataSelect = input("1: vocab data | 2: test data")
+dataSelect = input("1: vocab data | 2: test data \n")
 if dataSelect == "1":
     data = "vocabDefinitions.json"
 elif dataSelect == "2":
@@ -30,18 +30,23 @@ def get_value_from_json(word_list, key):
 keys = list(loaded_data.keys())
 
 
-def choose_word():
+def choose_word(remove):
 
     chosen_word = random.choice(keys)
-    keys.remove(chosen_word)
+    if remove:
+        keys.remove(chosen_word)
     return chosen_word
 
 
 def __main__():
     clearCLI()
-    print("Choose how many random words to practice")
-    print("1-110")
+    print("Choose how many random words to practice from 1-110 \n")
     getWordAmount = int(input())
+    if getWordAmount >= 110:
+        getWordAmount = 110
+    if getWordAmount <= 1:
+        getWordAmount = 1
+
     clearCLI()
     roundNum = 0
     correctQuestions = 0
@@ -54,12 +59,20 @@ def __main__():
             else:
                 accuracy = f" "
 
-            word = choose_word()
+            word = choose_word(True)
             definition = get_value_from_json(loaded_data, word)
             clearCLI()
             print(f"round: {str(roundNum + 1)} {accuracy}")
             print(f"What word does this describe?")
-            print(json.dumps(definition, indent=0))
+            jsonDefinition = json.dumps(definition, indent=0)
+            print(jsonDefinition)
+
+            choices = []
+            choices.append(word)
+            for i in range(3):
+                choices.append(choose_word(False))
+            random.shuffle(choices)
+            print(f"{choices}")
 
             getInput = str(input().capitalize())
             if getInput == word:
