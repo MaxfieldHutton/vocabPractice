@@ -64,6 +64,7 @@ def __main__():
     clearCLI()
     roundNum = 0
     correctQuestions = 0
+    accuracy = 1.0
 
     for i in range(wordAmount):
         roundActive = True
