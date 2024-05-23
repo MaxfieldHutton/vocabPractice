@@ -16,8 +16,13 @@ def getInt(_inputText):
 
 
 def clearCLI():
-    ##print("\033c")
+    print("If you are seeing this it means you aren't using the built in windows, linux, or mac terminals.\n This "
+          "program is intended to run in these terminals.\n You may see some things that you wouldn't normally")
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def clamp(value, min_value, max_value):
+    return max(min_value, min(value, max_value))
 
 
 dataSelect = getInt("1: vocab data | 2: test data \n")
@@ -54,10 +59,7 @@ def choose_word(remove):
 def __main__():
     clearCLI()
     wordAmount = getInt("Choose how many random words to practice from 1-110 \n")
-    if wordAmount >= 110:
-        wordAmount = 110
-    if wordAmount <= 1:
-        wordAmount = 1
+    wordAmount = clamp(wordAmount, 1, 110)
 
     clearCLI()
     roundNum = 0
